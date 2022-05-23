@@ -32,7 +32,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   static const platform = MethodChannel('com.belajarubic.methodchannel');
 
-  Future getMMessageFromNative() async {}
+  Future getMessageFromNative() async {
+     try {
+      message = await platform.invokeMethod('getMessage');
+    } on PlatformException catch (e, s) {
+      message = 'Failed to call get message: $e';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             ElevatedButton(
               onPressed: () async {
-                await getMMessageFromNative();
+                await getMessageFromNative();
                 setState(() {});
               },
               child: const Text("Get Data From Method Channel"),
