@@ -7,7 +7,7 @@ import Flutter
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    let controller : FlutterViewController = window?rootViewController as! FlutterViewController
+      let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
     let flutterChannel = FlutterMethodChannel(name: "com.belajarubic.methodchannel", binaryMessenger: controller.binaryMessenger)
 
     flutterChannel.setMethodCallHandler({
@@ -21,7 +21,7 @@ import Flutter
       
       } else if (call.method == "getMessageFromParam"){
         guard let args = call.arguments as? [String:Any] else {return}
-        let param1 =  args["param1"] as! String
+        let param1 =  args["param1"] as! Int
         result ("Received param from iOS : \(param1)")
       
       } else if (call.method == "getMessageFromNative"){
